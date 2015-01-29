@@ -1,0 +1,132 @@
+﻿body {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+h1 {
+	font-size: 1.2em;
+}
+
+.container {
+    position: absolute;
+    /* background-image: linear-gradient(0deg, #888888, #EEEEEE); */
+	background-color: #484848;
+	background-image: linear-gradient(135deg, #282828 20em, transparent 20em), linear-gradient(335deg, #282828 20em, transparent 20em), linear-gradient(310deg, #282828 20em, transparent 20em);
+	background-size: 100% 40em;	
+	background-position: 0em 0em;
+	width: 100%;
+	height: 100%;
+	margin: 0em;
+	padding: 0em;
+	text-align: center;
+}
+
+.iconWrapper {
+	position: absolute;
+	top: 1.4em;
+	left:1.4em;
+}
+.iconHome {
+	background-color: #BBFF00;
+	position: relative;
+	width: 6em;
+	height: 5em;
+	border-radius: .4em;
+	box-shadow:  inset -.16em -.16em .2em #020202;
+}
+.iconHome:hover  {
+	cursor: pointer;
+}
+.iconHome:hover + .iconFooter {
+    display: inline;
+}
+.iconFooter {
+	display: none;
+	color: #DFDFDF;
+	font-family: OpenSans;
+	position: relative;
+	height: 2em;
+}
+
+.menu {
+	position: absolute;
+	top: 1.4em;
+	right:1.4em;
+	background-color: #242424;
+	width: 2.2em;
+	height: 1.8em;
+	border-radius: .4em;
+	text-align: center;
+	margin: .1em;
+	padding: .1em;
+}
+.menuInner {
+	/* display: inline-block; */
+	background-color: #101010;
+	position: relative;
+	left: .2em;
+	width: 1.8em;
+	height: .3em;
+	padding: 0em;
+	margin: .2em 0em 0em 0em;
+	border-radius: .4em;
+}
+.menu:hover  {
+	cursor: pointer;
+	background-color: #363636;
+}
+.menu:hover + .menuInner {
+	background-color: #282828;
+}
+
+.content {
+	color: #DFDFDF;
+	font-family: OpenSans;
+	text-align: center;
+	display: inline-block;
+    position: relative;
+	background-color: rgba(10,10,10,.2);
+	margin: 0em 0em 0em 0em;
+	width: calc(100% - 30em);
+	height: 100%;
+	height: calc(100% - 3em);
+	/* border-radius: .4em .4em 0em 0em; */
+	box-shadow: 0em 0em 1.6em #020202;
+	/* bottom: 0em; */
+	padding: .4em 2em 1em 2em;
+    overflow: hidden;
+}
+
+.footer {
+	color: #DFDFDF;
+	font-family: OpenSans;
+	position: absolute;
+	background-color: #363636;
+	bottom: 0em;
+	padding: .3em 0em 0em 0em;
+	height: 1.8em;
+	width:100%;
+	text-align: center;
+	box-shadow: -.05em -.05em .6em #040404;
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("../Fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "OpenSans-Semibold";
+    src: url("../Fonts/OpenSans-Semibold.ttf");
+}
+
+@font-face {
+    font-family: "Leo-Arrow";
+    src: url("../Fonts/Leo-Arrow.ttf");
+}
+
+@font-face {
+    font-family: "Didact-Gothic";
+    src: url("../Fonts/DidactGothic.ttf");
+}

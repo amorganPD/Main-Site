@@ -27,15 +27,15 @@ h1 {
 .iconWrapper {
 	position: absolute;
 	top: 1.4em;
-	left:1.4em;
+	left: 1.4em;
 }
 .iconHome {
 	background-color: #BBFF00;
 	position: relative;
 	width: 6em;
 	height: 5em;
-	border-radius: .4em;
-	box-shadow:  inset -.16em -.16em .2em #020202;
+	border-radius: .8em;
+	box-shadow:  .16em .16em .2em #020202;
 }
 .iconHome:hover  {
 	cursor: pointer;

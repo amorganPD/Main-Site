@@ -2,49 +2,51 @@
 <html>
 <head>
 
+	<!-- disable zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	
     <title>Anton Morgan | Engineer :: Designer</title>
     <link href="Styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
+<div class="bodyWrapper">
+	<!-- Because Chrome is being a little b*tch with the background image -->
+	<div class='backgroundImageWrapper'>
+		<img class="backgroundImage" src="./Images/background-image.svg" />
+	</div>
+	
 	<div class="container" id="renderDiv">
 		<div class="backgroundPlatform">
 			<div class="platform" id="base"></div>
 			<div class="platform" id="back"></div>
 			<div class="carousel">
-				<div class="panel" id="welcome"></div>
-				<div class="panel" id="projects"></div>
-				<div class="panel" id="tutorials"></div>
-				<div class="panel" id="portfolio"></div>
-				<div class="panel" id="aboutme"></div>
+				<div class="panel" id="panel-0">
+					<div class="content-3" id="designContent"><div class="bullcrapAlign"></div><img class="contentIcon" src="./Images/design-icon.svg" /><div class="tagLine">A commitment to design...</div></div>
+					<div class="content-3" id="mechContent"><div class="tagLine">A desire to tinker...</div><img class="contentIcon" src="./Images/mechanical-icon.svg" /><div class="bullcrapAlign"></div></div>
+					<div class="content-3" id="codeContent"><div class="bullcrapAlign"></div><img class="contentIcon" src="./Images/code-icon.svg" /><div class="tagLine">And a passion to code. </div></div>
+				</div>
+				<div class="panel" id="panel-1"></div>
+				<div class="panel" id="panel-2"></div>
+				<div class="panel" id="panel-3"></div>
+				<div class="panel" id="panel-4"></div>
 			</div>
 		</div>
 		<div class="panelHeader"></div>
 		<div class="panelFooter">
-			<div class="panelDot" id="panel-0"></div>
-			<div class="panelDot" id="panel-1"></div>
-			<div class="panelDot" id="panel-2"></div>
-			<div class="panelDot" id="panel-3"></div>
-			<div class="panelDot" id="panel-4"></div>
+			<div class="panelDot" id="panelDot-0"></div>
+			<div class="panelDot" id="panelDot-1"></div>
+			<div class="panelDot" id="panelDot-2"></div>
+			<div class="panelDot" id="panelDot-3"></div>
+			<div class="panelDot" id="panelDot-4"></div>
 		</div>
-		<!-- <div class="content-Home">
 		
+		<!-- place holder divs -->
+		<!-- <div class="content-Home">
 			<div class="contentIcon circle" id="projects">
 				<div class="contentIcon circle1"> 
 					<div class="contentIcon circle2">Projects</div>
 				</div>
 			</div>
-			<div class="contentIcon circle" id="imageGallery">
-				<div class="contentIcon circle1"> 
-					<div class="contentIcon circle2">Image Gallery</div>
-				</div>
-			</div>
-			<div class="contentIcon circle" id="tutorials">
-				<div class="contentIcon circle1"> 
-					<div class="contentIcon circle2"><a href="./Tutorials">Tutorials</a></div>
-				</div>
-			</div>
-			
 		</div> -->
     </div>
 	<div class="iconWrapper">
@@ -57,12 +59,14 @@
 		Engineer :: Designer
 		</div>
 	</div>
-	<div class="menu">
+	<div class="linkedIn" id='linkedIn'></div>
+	<div class="gitHub" id='gitHub'></div>
+	<!-- <div class="menu">
 		<div class="menuInner"></div>
 		<div class="menuInner"></div>
 		<div class="menuInner"></div>
-	</div>
-	
+	</div> -->
+</div>
 </body>
 	<!--Script references. -->
     <!-- <script src="Scripts/jquery-1.10.2.min.js"></script> -->

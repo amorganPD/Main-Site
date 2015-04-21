@@ -1,18 +1,40 @@
 ﻿body {
 	font-family: OpenSans;
 	width: 100%;
-	height: 100%;
+	height: inherit;
 	margin: 0em;
-	background-image: url("../Images/background-image.svg");
-	background-color: #484848;
-	background-size: cover;
-    background-repeat: no-repeat;
+	background: url("../Images/backgroundImage.svg");
+	background-color: #020202;
+	background-size: 1em 1em;	
+	/* -webkit-background-size: cover;	
+	-moz-background-size: cover;	
+	-o-background-size: cover;	 */
+    background-repeat: repeat;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+.bodyWrapper{
+	width: 100%;
+	height: 100vh;
+	margin: 0em;
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
 
+.backgroundImageWrapper {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100% !important;
+	overflow: hidden;
+}
+.backgroundImage {
+	width:100%;
+	left: 0em;
+}
+
 h1 {
-	font-size: 1.2em;
+	font-size: 1.6em;
 }
 
 a {
@@ -23,18 +45,18 @@ a:hover {
 	color: #BBFF00;
 }
 
-.parallax {
+/* .parallax {
   perspective: 1px;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
 .parallax__layer {
-  /* position: absolute; */
-/*   top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0; */
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0; 
 }
 .parallax__layer--base {
 	transform: translateZ(0);
@@ -42,7 +64,7 @@ a:hover {
 }
 .parallax__layer--back {
   transform: translateZ(-1px);
-}
+} */
 
 .container {
 	width: 100%;
@@ -55,6 +77,8 @@ a:hover {
 	-moz-perspective: 100em;
 	-o-perspective: 100em;
 	perspective: 60em;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 .backgroundPlatform {
@@ -62,7 +86,7 @@ a:hover {
 	height: 100%;
 	position: absolute;
 	margin: 0em;
-	pading: 0em;
+	padding: 0em;
 	top: 0em;
 	-webkit-transition: -webkit-transform 1s;
 	-moz-transition: -moz-transform 1s;
@@ -83,6 +107,7 @@ a:hover {
 }
 
 .platform#base {
+	display:none;
 	height: 30em;
 	background-color: rgba(179,179,179,.6);
 	border-color: rgba(80,80,80,1);
@@ -96,11 +121,12 @@ a:hover {
 }
 
 .platform#back {
-	height: 110%;
+	display: none;
+	height: 90%;
 	top: 0em;
 	background-color: rgba(100,100,100,.6);
 	border-color: rgba(80,80,80,1);
-	border-radius: .5em .5em 0em 0em;
+	/* border-radius: .5em .5em 0em 0em; */
 }
 
 .carousel{
@@ -122,37 +148,34 @@ a:hover {
 
 .panel {
 	color: #EFEFEF;
-	text-align: center;
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	/* background-color: #BBFF00; */
-	background-color: rgba(12, 12, 12, 1);
-/* 	-webkit-backface-visibility: hidden;
-	-moz-backface-visibility: hidden;
-	-o-backface-visibility: hidden;
-	backface-visibility: hidden; */
+	background-color: rgba(48, 48, 48, .95);
 	border: .1em solid;
-	border-color: rgba(20, 20, 20, 1);
-	/* border-radius: .5em; */
+	border-color: rgba(48, 48, 48, 1);
 }
+/* #panel-2 {
+	height: 60em;
+} */
 .panelHeader {
 	color: #EFEFEF;
 	text-align: center;
 	min-width: 100%;
 	height: 4.6em;
 	position: absolute;
-	top: 0em;	
-	background-color: rgba(12, 12, 12, .5);
+	top: 0em;
+	background-color: rgba(12, 12, 12, .8);
 }
 .panelFooter {
 	color: #EFEFEF;
 	text-align: center;
 	width:  18em;
-	height: 2em;
+	height: 1.6em;
 	left: calc(50% - 9em);
 	position: absolute;
-	bottom: 0em;	
+	bottom: .2em;	
 	/* background-color: rgba(12, 12, 12, .5); */
 }
 .panelDot {
@@ -164,6 +187,10 @@ a:hover {
 	background-color: #EFEFEF;
 	border: .1em solid;
 	border-color: #EFEFEF;
+}
+.panelDotSelected{
+	border-color: #686868;
+	background-color: #282828;
 }
 .panelDot:hover {
 	border-color: #686868;
@@ -219,10 +246,46 @@ a:hover {
     display: inline;
 }
 
+.linkedIn {
+	background-image: url("../Images/1428394269_square-linkedin.svg");
+	background-size: auto 100%;
+	position: absolute;
+	top: .9em;
+	right: 1em;
+	width: 2.8em;
+	height: 2.8em;
+	border-radius: .4em;
+	text-align: center;
+	box-shadow:  .16em .16em .2em #020202;
+}
+.linkedIn:hover {
+	cursor: pointer;
+	background-image: url("../Images/1428394269_square-linkedin-selected.svg");
+}
+.gitHub {
+	background-image: url("../Images/github-icon-selected.svg");
+	background-size: cover;
+	background-color: rgba(255,255,255,1);
+	/* background-color: rgba(153,0,153,1); */
+	position: absolute;
+	top: .9em;
+	right: 4.8em;
+	width: 2.8em;
+	height: 2.8em;
+	padding: 0em;
+	border-radius: .4em;
+	text-align: center;
+	box-shadow:  .16em .16em .2em #020202;
+}
+.gitHub:hover {
+	cursor: pointer;
+	background-image: url("../Images/github-icon.svg");
+}
+
 .menu {
 	position: absolute;
 	top: 1.4em;
-	right: 2em;
+	right: 1em;
 	background-color: #484848;
 	width: 2.2em;
 	height: 1.8em;
@@ -294,11 +357,39 @@ a:hover {
 	padding: .4em 2em 1em 2em;
 }
 
+.bullcrapAlign {
+	display: inline-block;
+	width: .1em;
+	height: 100%;
+	vertical-align: middle;
+}
 .contentIcon {
-	width: 10em;
-	height: 10em;
-	border-radius: 5em;
-	border-color: $DEDEDE;
+	width: auto;
+	height: 50%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.content-3 {
+	height: 33.3%;
+	width: 100%;
+	margin: 0em;
+	padding: .5em 1em .5em 1em;
+	vertical-align: middle;
+	box-sizing: border-box;
+}
+
+#designContent {
+	text-align:left;
+}
+#mechContent {
+	text-align:right;
+}
+#codeContent {
+	text-align:left;
+}
+.tagLine {
+	display: inline-block;
+	padding: .2em .4em .2em .4em;
 }
 
 .circle {
@@ -320,10 +411,10 @@ a:hover {
 	border-bottom: solid .1em;
     padding-top: calc(50% - 1em);
 }
-.contentIcon:hover {
+/* .contentIcon:hover {
 	color: #BBFF00;
 	cursor: pointer;
-}
+} */
 
 /* #projects {
 	position: absolute;
@@ -356,6 +447,32 @@ a:hover {
 	text-align: center;
 	box-shadow: -.05em -.05em .6em #040404;
     overflow: hidden;
+}
+
+@media (max-width: 40em) {
+	.iconHeader {
+		display: none !important;
+	}
+	.iconHome {
+		margin-top: .8em;
+		width: 3em;
+		height: 3em;
+		border-radius: .6em;
+		box-shadow:  .12em .12em .18em #020202;
+	}
+	.iconFooter {
+		display: none !important;
+	}
+	.iconWrapper:hover .iconHome  {
+		background-color: #DEDEDE;
+		margin-top: .8em;
+	}
+	.content-3 {
+		padding: .2em;
+	}
+	.contentIcon {
+		height: 30%;
+	}
 }
 
 @font-face {

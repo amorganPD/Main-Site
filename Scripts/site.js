@@ -26,18 +26,6 @@ var init = function() {
 	
 	var panels = document.getElementsByClassName('panel');
 	var currentPanel = 0;
-	// Create click event for clicking on panels
-	// for (i=0; i < panels.length; i++ ) {
-		// panels[i].addEventListener( 'click', function(evt){
-			// document.getElementById('panelDot-' + currentPanel).toggleClassName('panelDotSelected');
-			// currentPanel++;
-			// if (currentPanel >= panels.length) {
-				// currentPanel=0;
-			// }
-			// document.getElementById('panelDot-' + currentPanel).toggleClassName('panelDotSelected');
-			// document.getElementsByClassName('carousel')[0].style[ transformProp ] = 'translateZ( ' + -radius + 'px ) translateY( 4.5em) rotateY( ' + -angle*currentPanel + 'deg)';
-		  // }, false);
-	// }
 	
 	// change function to change a panel to index
 	var changePanel = function(index) {
@@ -77,6 +65,18 @@ var init = function() {
 		}
 		document.getElementById('panel-' + currentPanel).style[ transformProp ] = 'translateZ( ' + zTranslate[currentPanel] + 'px ) translateX( ' + xTranslate[currentPanel] + 'px ) rotateY( ' + angle*currentPanel + 'deg ) translateY(' + scrollTranslateY[currentPanel] + 'px)';
 	};
+	document.body.addEventListener("DOMMouseScroll", function(evt) {
+		if (evt.detail < 0) {
+			scrollTranslateY[currentPanel]+=20;
+		}
+		else if (evt.detail > 0 && (scrollTranslateY[currentPanel] > -document.getElementById('panel-' + currentPanel).offsetHeight*.2)) {
+			scrollTranslateY[currentPanel]-=20;
+		}
+		if (scrollTranslateY[currentPanel] > 0) {
+			scrollTranslateY[currentPanel]=0;
+		}
+		document.getElementById('panel-' + currentPanel).style[ transformProp ] = 'translateZ( ' + zTranslate[currentPanel] + 'px ) translateX( ' + xTranslate[currentPanel] + 'px ) rotateY( ' + angle*currentPanel + 'deg ) translateY(' + scrollTranslateY[currentPanel] + 'px)';
+	}, false);
 	// Scroll via touch move
 	var previousTouchY = 0;
 	var firstTouchEvtY = 0;
@@ -92,9 +92,6 @@ var init = function() {
 			else if (deltaY > 4 ) {
 				scrollTranslateY[currentPanel]-=12;
 			}
-			// if (scrollTranslateY[currentPanel] > 1) {
-				// scrollTranslateY[currentPanel]=0;
-			// }
 			document.getElementById('panel-' + currentPanel).style[ transformProp ] = 'translateZ( ' + zTranslate[currentPanel] + 'px ) translateX( ' + xTranslate[currentPanel] + 'px ) rotateY( ' + angle*currentPanel + 'deg ) translateY(' + scrollTranslateY[currentPanel] + 'px)';
 		}
 		else {

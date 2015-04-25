@@ -13,9 +13,16 @@ var init = function() {
 	var carousel = document.getElementsByClassName('panel');
 	var angle = 360/carousel.length;
 	var radius = window.innerWidth*.8;
+	var carouselShift = radius*1.0;
 	var zTranslate = [];
 	var xTranslate = [];
-	document.getElementsByClassName('carousel')[0].style[ transformProp ] = 'translateZ( ' + -radius + 'px ) translateY( 4.5em) ';
+	
+	if (window.innerWidth < 600) {
+		document.getElementsByClassName('carousel')[0].style[ 'left' ] = '0';
+		document.getElementsByClassName('carousel')[0].style[ 'right' ] = '0';
+	}
+	
+	document.getElementsByClassName('carousel')[0].style[ transformProp ] = 'translateZ( ' + -carouselShift + 'px ) translateY( 4.5em) ';
 	for (var i=0; i< carousel.length; i++ ) {
 		//calculate the x and y
 		zTranslate.push(radius*Math.cos(angle*i*Math.PI/180));
@@ -26,6 +33,7 @@ var init = function() {
 	
 	var panels = document.getElementsByClassName('panel');
 	var currentPanel = 0;
+	var panelTitles = ["", "Web App Projects", "Embedded Projects", "Concepts et al", "Tutorials",""];
 	
 	// change function to change a panel to index
 	var changePanel = function(index) {
@@ -39,8 +47,11 @@ var init = function() {
 		document.getElementById('panelDot-' + parseInt(currentPanel)).toggleClassName('panelDotSelected');
 		currentPanel = index;
 		document.getElementById('panelDot-' + parseInt(currentPanel)).toggleClassName('panelDotSelected');
-		document.getElementsByClassName('carousel')[0].style[ transformProp ] = 'translateZ( ' + parseInt(-radius) + 'px ) translateY( 4.5em) rotateY( ' + parseInt(-angle*currentPanel) + 'deg)';
+		document.getElementsByClassName('carousel')[0].style[ transformProp ] = 'translateZ( ' + parseInt(-carouselShift) + 'px ) translateY( 4.5em) rotateY( ' + parseInt(-angle*currentPanel) + 'deg)';
+		document.getElementById('titleHeader').innerHTML = panelTitles[currentPanel];
 	}
+	
+	/****START Scrolling Section****/
 	
 	var scrollTranslateY = []; // used to maintain scroll height/translation
 	// create click event for panel dots
@@ -54,10 +65,11 @@ var init = function() {
 	
 	// scroll screen by translating panel
 	document.body.onmousewheel = function(evt) {
+		var diffHeight = (window.innerHeight*.8 - document.getElementById('panel-' + currentPanel).offsetHeight);
 		if (evt.deltaY < 0) {
 			scrollTranslateY[currentPanel]+=20;
 		}
-		else if (evt.deltaY > 0 && (scrollTranslateY[currentPanel] > -document.getElementById('panel-' + currentPanel).offsetHeight*.2)) {
+		else if (evt.deltaY > 0 && (scrollTranslateY[currentPanel] > diffHeight*1.2)) {
 			scrollTranslateY[currentPanel]-=20;
 		}
 		if (scrollTranslateY[currentPanel] > 0) {
@@ -66,10 +78,11 @@ var init = function() {
 		document.getElementById('panel-' + currentPanel).style[ transformProp ] = 'translateZ( ' + zTranslate[currentPanel] + 'px ) translateX( ' + xTranslate[currentPanel] + 'px ) rotateY( ' + angle*currentPanel + 'deg ) translateY(' + scrollTranslateY[currentPanel] + 'px)';
 	};
 	document.body.addEventListener("DOMMouseScroll", function(evt) {
+		var diffHeight = (window.innerHeight*.8 - document.getElementById('panel-' + currentPanel).offsetHeight);
 		if (evt.detail < 0) {
 			scrollTranslateY[currentPanel]+=20;
 		}
-		else if (evt.detail > 0 && (scrollTranslateY[currentPanel] > -document.getElementById('panel-' + currentPanel).offsetHeight*.2)) {
+		else if (evt.detail > 0 && (scrollTranslateY[currentPanel] > diffHeight*1.2)) {
 			scrollTranslateY[currentPanel]-=20;
 		}
 		if (scrollTranslateY[currentPanel] > 0) {
@@ -87,10 +100,10 @@ var init = function() {
 			deltaY = (previousTouchY-touch.screenY);
 			firstTouchEvtY=0;
 			if (deltaY < -4) {
-				scrollTranslateY[currentPanel]+=12;
+				scrollTranslateY[currentPanel]+=10;
 			}
 			else if (deltaY > 4 ) {
-				scrollTranslateY[currentPanel]-=12;
+				scrollTranslateY[currentPanel]-=10;
 			}
 			document.getElementById('panel-' + currentPanel).style[ transformProp ] = 'translateZ( ' + zTranslate[currentPanel] + 'px ) translateX( ' + xTranslate[currentPanel] + 'px ) rotateY( ' + angle*currentPanel + 'deg ) translateY(' + scrollTranslateY[currentPanel] + 'px)';
 		}
@@ -100,6 +113,8 @@ var init = function() {
 		}
 	}, false);
 	
+	/****END Scrolling Section****/
+	
 	// Code for swiping to next panel
 	var touchStartX=0;
 	document.body.addEventListener('touchstart', function(event) {
@@ -107,19 +122,28 @@ var init = function() {
 	}, false);
 	document.body.addEventListener('touchend', function(event) {
 		var deltaX = (event.changedTouches[0].screenX - touchStartX);
+		var diffHeight = (window.innerHeight*.8 - document.getElementById('panel-' + currentPanel).offsetHeight);
 		// TODO: Don't like using px, need to find another method
 		if (scrollTranslateY[currentPanel] > 1 ) {
 			scrollTranslateY[currentPanel]=0;
 			document.getElementById('panel-' + currentPanel).style[ transformProp ] = 'translateZ( ' + zTranslate[currentPanel] + 'px ) translateX( ' + xTranslate[currentPanel] + 'px ) rotateY( ' + angle*currentPanel + 'deg ) translateY(' + scrollTranslateY[currentPanel] + 'px)';
 		}
-		if (scrollTranslateY[currentPanel] < -(document.getElementById('panel-' + currentPanel).offsetHeight*.2)) {
+		if ((scrollTranslateY[currentPanel] < diffHeight*1.2) && (diffHeight < 0)) {
+			scrollTranslateY[currentPanel] = diffHeight*1.2;
+			document.getElementById('panel-' + currentPanel).style[ transformProp ] = 'translateZ( ' + zTranslate[currentPanel] + 'px ) translateX( ' + xTranslate[currentPanel] + 'px ) rotateY( ' + angle*currentPanel + 'deg ) translateY(' + scrollTranslateY[currentPanel] + 'px)';
+		}
+		else if ((diffHeight > 0) && (scrollTranslateY[currentPanel] < -document.getElementById('panel-' + currentPanel).offsetHeight*.2)) {
 			scrollTranslateY[currentPanel] = -document.getElementById('panel-' + currentPanel).offsetHeight*.2;
 			document.getElementById('panel-' + currentPanel).style[ transformProp ] = 'translateZ( ' + zTranslate[currentPanel] + 'px ) translateX( ' + xTranslate[currentPanel] + 'px ) rotateY( ' + angle*currentPanel + 'deg ) translateY(' + scrollTranslateY[currentPanel] + 'px)';
 		}
-		if (deltaX < -80) {
+		var swipeX=80;
+		if (window.innerWidth < 600 && window.innerWidth > 200) {
+			swipeX=200;
+		}
+		if (deltaX < -swipeX) {
 			changePanel(parseInt(currentPanel+1));
 		}
-		else if (deltaX > 80){
+		else if (deltaX > swipeX){
 			changePanel(parseInt(currentPanel-1));
 		}
 	}, false);
@@ -129,13 +153,14 @@ var init = function() {
 	window.onresize = function(evt) {
 		// translate new radius for 3D Carousel
 		radius = window.innerWidth*.8;
+		carouselShift = radius*1.0;
 		for (var i=0; i< carousel.length; i++ ) {
 			//calculate the x and y
 			zTranslate[i] = radius*Math.cos(angle*i*Math.PI/180);
 			xTranslate[i] = radius*Math.sin(angle*i*Math.PI/180);
 			carousel[i].style[ transformProp ] =  'translateZ( ' + zTranslate[i] + 'px ) translateX( ' + xTranslate[i] + 'px ) rotateY( ' + angle*i + 'deg ) ';
 		}
-		document.getElementsByClassName('carousel')[0].style[ transformProp ] = 'translateZ( ' + -radius + 'px ) translateY( 4.5em) rotateY( ' + -angle*currentPanel + 'deg)';
+		document.getElementsByClassName('carousel')[0].style[ transformProp ] = 'translateZ( ' + -carouselShift + 'px ) translateY( 4.5em) rotateY( ' + -angle*currentPanel + 'deg)';
 		
 		// translate base platform
 		offset = -baseDiv.offsetHeight/2 + (renderDiv.offsetHeight);

@@ -6,9 +6,6 @@
 	background: url("../Images/backgroundImage.svg");
 	background-color: #020202;
 	background-size: 1em 1em;	
-	/* -webkit-background-size: cover;	
-	-moz-background-size: cover;	
-	-o-background-size: cover;	 */
     background-repeat: repeat;
 	overflow-x: hidden;
 	overflow-y: hidden;
@@ -21,50 +18,17 @@
 	overflow-y: hidden;
 }
 
-.backgroundImageWrapper {
-	display: none;
-	position: absolute;
-	width: 100%;
-	height: 100% !important;
-	overflow: hidden;
-}
-.backgroundImage {
-	width:100%;
-	left: 0em;
-}
-
 h1 {
 	font-size: 1.6em;
 }
 
 a {
 	text-decoration:none;
-	color: #DEDEDE;
-}
-a:hover {
 	color: #BBFF00;
 }
-
-/* .parallax {
-  perspective: 1px;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+a:hover {
+	color: #8F8F8F;
 }
-.parallax__layer {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0; 
-}
-.parallax__layer--base {
-	transform: translateZ(0);
-	-webkit-transform: translate3d(0, 0, 0);
-}
-.parallax__layer--back {
-  transform: translateZ(-1px);
-} */
 
 .container {
 	width: 100%;
@@ -153,8 +117,11 @@ a:hover {
 	position: absolute;
 	/* background-color: #BBFF00; */
 	background-color: rgba(48, 48, 48, .95);
-	border: .1em solid;
+	/* border: .1em solid; */
 	border-color: rgba(48, 48, 48, 1);
+}
+#panel-1, #panel-2, #panel-3 {
+	height: auto;
 }
 /* #panel-2 {
 	height: 60em;
@@ -167,6 +134,7 @@ a:hover {
 	position: absolute;
 	top: 0em;
 	background-color: rgba(12, 12, 12, .8);
+	z-index: 99;
 }
 .panelFooter {
 	color: #EFEFEF;
@@ -175,7 +143,8 @@ a:hover {
 	height: 1.6em;
 	left: calc(50% - 9em);
 	position: absolute;
-	bottom: .2em;	
+	bottom: .2em;
+	z-index: 99;
 	/* background-color: rgba(12, 12, 12, .5); */
 }
 .panelDot {
@@ -187,6 +156,7 @@ a:hover {
 	background-color: #EFEFEF;
 	border: .1em solid;
 	border-color: #EFEFEF;
+	box-shadow:  .1em .1em .12em #020202;
 }
 .panelDotSelected{
 	border-color: #686868;
@@ -197,6 +167,15 @@ a:hover {
 	background-color: #282828;
 }
 
+.titleHeader {
+	display: inline-block;
+	font-size: 2em;
+	text-align: center;
+	vertical-align: middle;
+	height: auto;
+	width: auto;
+	margin: auto;
+}
 .iconWrapper {
 	position: absolute;
 	font-family: OpenSans;
@@ -236,7 +215,7 @@ a:hover {
 	cursor: pointer;
 }
 .iconWrapper:hover .iconHeader  {
-    display: inline;
+    display: inline-block;
 }
 .iconWrapper:hover .iconHome  {
 	background-color: #DEDEDE;
@@ -282,6 +261,116 @@ a:hover {
 	background-image: url("../Images/github-icon.svg");
 }
 
+.bullcrapAlign {
+	display: inline-block;
+	width: .1em;
+	height: 100%;
+	vertical-align: middle;
+}
+.contentIcon {
+	width: auto;
+	height: 50%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.content-3 {
+	height: 33.3%;
+	width: 100%;
+	margin: 0em;
+	padding: .5em 1em .5em 1em;
+	vertical-align: middle;
+	box-sizing: border-box;
+}
+
+#designContent {
+	text-align:left;
+	box-shadow: inset -.14em -.14em .7em #121212;
+}
+#mechContent {
+	text-align:right;
+}
+#codeContent {
+	text-align:left;
+	box-shadow: inset -.12em .12em .7em #121212;
+}
+.tagLine {
+	display: inline-block;
+	padding: .2em .4em .2em .4em;
+}
+
+.projectTitle {
+	width: auto;
+	height: auto;
+	margin: 1em;
+	padding: .4em;
+	font-size: 1.2em;
+	text-align: center;
+}
+.projectImage {
+	width: 100%;
+	height: auto;
+}
+.projectContent {
+	width: auto;
+	padding: 1em;
+	height: auto;
+}
+
+
+@media (max-width: 40em) {
+	.iconHeader {
+		display: none !important;
+	}
+	.iconHome {
+		margin-top: .8em;
+		width: 3em;
+		height: 3em;
+		border-radius: .6em;
+		box-shadow:  .12em .12em .18em #020202;
+	}
+	.iconFooter {
+		display: none !important;
+	}
+	.iconWrapper:hover .iconHome  {
+		background-color: #DEDEDE;
+		margin-top: .8em;
+	}
+	.content-3 {
+		padding: .2em;
+	}
+	.contentIcon {
+		height: 30%;
+	}
+	.titleHeader {
+		font-size: .8em;
+		width: 8em;
+	}
+}
+
+@font-face {
+    font-family: "OpenSans";
+    src: url("../Fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "OpenSans-Semibold";
+    src: url("../Fonts/OpenSans-Semibold.ttf");
+}
+
+@font-face {
+    font-family: "Leo-Arrow";
+    src: url("../Fonts/Leo-Arrow.ttf");
+}
+
+@font-face {
+    font-family: "Didact-Gothic";
+    src: url("../Fonts/DidactGothic.ttf");
+}
+
+/*Deprecated, but kept until confirmed to be deleted*/
+/*15-04-22*/
+
+/*START Hamburglar*/
 .menu {
 	position: absolute;
 	top: 1.4em;
@@ -312,6 +401,7 @@ a:hover {
 .menu:hover + .menuInner {
 	background-color: #282828;
 }
+/*END Hamburglar*/
 
 .content-Home {
 	color: #DFDFDF;
@@ -356,42 +446,6 @@ a:hover {
 	box-shadow: 0em 0em 1.6em #020202;
 	padding: .4em 2em 1em 2em;
 }
-
-.bullcrapAlign {
-	display: inline-block;
-	width: .1em;
-	height: 100%;
-	vertical-align: middle;
-}
-.contentIcon {
-	width: auto;
-	height: 50%;
-	display: inline-block;
-	vertical-align: middle;
-}
-.content-3 {
-	height: 33.3%;
-	width: 100%;
-	margin: 0em;
-	padding: .5em 1em .5em 1em;
-	vertical-align: middle;
-	box-sizing: border-box;
-}
-
-#designContent {
-	text-align:left;
-}
-#mechContent {
-	text-align:right;
-}
-#codeContent {
-	text-align:left;
-}
-.tagLine {
-	display: inline-block;
-	padding: .2em .4em .2em .4em;
-}
-
 .circle {
 	background-color: rgba(20,20,20,.25);
 	border-left: solid .1em;
@@ -411,28 +465,12 @@ a:hover {
 	border-bottom: solid .1em;
     padding-top: calc(50% - 1em);
 }
-/* .contentIcon:hover {
-	color: #BBFF00;
-	cursor: pointer;
-} */
-
-/* #projects {
-	position: absolute;
-	left: 15%;
-	top: 25%;
-} */
 
 #imageGallery {
 	position: absolute;
 	right: 15%;
 	top: 15%;
 }
-
-/* #tutorials {
-	position: absolute;
-	right: 40%;
-	top: 60%;
-} */
 
 .footer {
 	color: #DFDFDF;
@@ -447,50 +485,4 @@ a:hover {
 	text-align: center;
 	box-shadow: -.05em -.05em .6em #040404;
     overflow: hidden;
-}
-
-@media (max-width: 40em) {
-	.iconHeader {
-		display: none !important;
-	}
-	.iconHome {
-		margin-top: .8em;
-		width: 3em;
-		height: 3em;
-		border-radius: .6em;
-		box-shadow:  .12em .12em .18em #020202;
-	}
-	.iconFooter {
-		display: none !important;
-	}
-	.iconWrapper:hover .iconHome  {
-		background-color: #DEDEDE;
-		margin-top: .8em;
-	}
-	.content-3 {
-		padding: .2em;
-	}
-	.contentIcon {
-		height: 30%;
-	}
-}
-
-@font-face {
-    font-family: "OpenSans";
-    src: url("../Fonts/OpenSans-Regular.ttf");
-}
-
-@font-face {
-    font-family: "OpenSans-Semibold";
-    src: url("../Fonts/OpenSans-Semibold.ttf");
-}
-
-@font-face {
-    font-family: "Leo-Arrow";
-    src: url("../Fonts/Leo-Arrow.ttf");
-}
-
-@font-face {
-    font-family: "Didact-Gothic";
-    src: url("../Fonts/DidactGothic.ttf");
 }

@@ -52,6 +52,53 @@ var init = function() {
 		document.getElementById('titleHeader').innerHTML = panelTitles[currentPanel];
 	}
 	
+	/****START Swiping Section****/
+	// Code for swiping to next panel
+	var touchStartX=0;
+	var touchStartY=0;
+	document.body.addEventListener('touchstart', function(evt) {
+		// check which touch event/browser
+		var touch = evt.touches[0] || evt.originalEvent.touches[0] || evt.originalEvent.changedTouches[0];
+		touchStartX=touch.screenX;
+		touchStartY=touch.screenY;
+		previousTouchX = touchStartX;
+		previousTouchY = touchStartY;
+	}, false);
+	document.body.addEventListener('touchend', function(evt) {
+		var touch = evt.changedTouches[0] || evt.originalEvent.touches[0] || evt.originalEvent.changedTouches[0];
+		var deltaX = (touch.screenX - touchStartX);
+		var deltaY = (touch.screenY - touchStartY);
+		var diffHeight = (window.innerHeight*.8 - document.getElementById('panel-' + currentPanel).offsetHeight);
+		// TODO: Don't like using px, need to find another method
+		if (scrollTranslateY[currentPanel] > 1 ) {
+			// If over top, reset
+			scrollPanelTo(0);
+		}
+		if ((scrollTranslateY[currentPanel] < diffHeight*1.2) && (diffHeight < 0)) {
+			// If past bottom and panel greater than window height, reset to bottom
+			scrollPanelTo(diffHeight*1.2);
+		}
+		else if ((diffHeight > 0) && (scrollTranslateY[currentPanel] < -document.getElementById('panel-' + currentPanel).offsetHeight*.2)) {
+			// If past bottom and panel less than window height, reset to bottom
+			scrollPanelTo(-document.getElementById('panel-' + currentPanel).offsetHeight*.2);
+		}
+		// block from swiping if the gesture is a scroll gesture and not a swipe
+		if (Math.abs(deltaX) > Math.abs(deltaY)) {
+			var swipeX=80;
+			if (window.innerWidth < 600 && window.innerWidth > 200) {
+				swipeX=200;
+			}
+			if (deltaX < -swipeX) {
+				changePanel(parseInt(currentPanel+1));
+			}
+			else if (deltaX > swipeX){
+				changePanel(parseInt(currentPanel-1));
+			}
+		}
+		document.getElementById('panelFooter').style[ transformProp ] =  'translateZ( 1px )'; // to fix the panelFooter to be on top (clickable)
+	}, false);
+	/****END Swiping Section****/
+	
 	/****START Scrolling Section****/
 	
 	var scrollTranslateY = []; // used to maintain scroll height/translation
@@ -76,10 +123,10 @@ var init = function() {
 	document.body.onmousewheel = function(evt) {
 		var diffHeight = (window.innerHeight*.8 - document.getElementById('panel-' + currentPanel).offsetHeight);
 		if (evt.deltaY < 0) {
-			scrollPanelTo(scrollTranslateY[currentPanel]+40);
+			scrollPanelTo(scrollTranslateY[currentPanel] + (-1*evt.deltaY));
 		}
 		else if (evt.deltaY > 0 && (scrollTranslateY[currentPanel] > diffHeight*1.2)) {
-			scrollPanelTo(scrollTranslateY[currentPanel]-40);
+			scrollPanelTo(scrollTranslateY[currentPanel]-evt.deltaY);
 		}
 		if (scrollTranslateY[currentPanel] > 0) {
 			scrollPanelTo(0);
@@ -88,10 +135,10 @@ var init = function() {
 	document.body.addEventListener("DOMMouseScroll", function(evt) {
 		var diffHeight = (window.innerHeight*.8 - document.getElementById('panel-' + currentPanel).offsetHeight);
 		if (evt.detail < 0) {
-			scrollPanelTo(scrollTranslateY[currentPanel]+40);
+			scrollPanelTo(scrollTranslateY[currentPanel] + (-1*evt.detail));
 		}
 		else if (evt.detail > 0 && (scrollTranslateY[currentPanel] > diffHeight*1.2)) {
-			scrollPanelTo(scrollTranslateY[currentPanel]-40);
+			scrollPanelTo(scrollTranslateY[currentPanel]-evt.detail);
 		}
 		if (scrollTranslateY[currentPanel] > 0) {
 			scrollPanelTo(0);
@@ -100,30 +147,15 @@ var init = function() {
 	// Scroll via touch move
 	var previousTouchY = 0;
 	var previousTouchX = 0;
-	var firstTouchEvtY = 0;
-	document.body.addEventListener('touchmove', function(event) {
-		var touch = event.touches[0];
-		var deltaY=0;
-		var deltaX=0;
-		if (firstTouchEvtY==1) {
-			deltaY = (previousTouchY-touch.screenY);
-			deltaX = (previousTouchX-touch.screenX);
-			firstTouchEvtY=0;
-			// only scroll if the gesture matches a scroll
-			if (Math.abs(deltaY) > Math.abs(deltaX*.8)) {
-				if (deltaY < -4) {
-					scrollPanelTo(scrollTranslateY[currentPanel]+10);
-				}
-				else if (deltaY > 4 ) {
-					scrollPanelTo(scrollTranslateY[currentPanel]-10);
-				}
-			}
+	document.body.addEventListener('touchmove', function(evt) {
+		var touch = evt.touches[0] || evt.originalEvent.touches[0] || evt.originalEvent.changedTouches[0];
+		var deltaY=(previousTouchY-touch.screenY);
+		var deltaX=(previousTouchX-touch.screenX);
+		// only scroll if the gesture matches a scroll
+		if (Math.abs(deltaY) > Math.abs(deltaX*.333)) {
+			scrollPanelTo(scrollTranslateY[currentPanel]-(deltaY));
 		}
-		else {
-			previousTouchY=touch.screenY;
-			previousTouchX=touch.screenX;
-			firstTouchEvtY=1;
-		}
+		previousTouchY = touch.screenY;
 	}, false);
 	
 	var KEYS = {
@@ -212,47 +244,6 @@ var init = function() {
 	
 	/****END Scrolling Section****/
 	
-	// Code for swiping to next panel
-	var touchStartX=0;
-	var touchStartY=0;
-	document.body.addEventListener('touchstart', function(event) {
-		touchStartX=event.touches[0].screenX;
-		touchStartY=event.touches[0].screenY;
-	}, false);
-	document.body.addEventListener('touchend', function(event) {
-		var deltaX = (event.changedTouches[0].screenX - touchStartX);
-		var deltaY = (event.changedTouches[0].screenY - touchStartY);
-		var diffHeight = (window.innerHeight*.8 - document.getElementById('panel-' + currentPanel).offsetHeight);
-		// TODO: Don't like using px, need to find another method
-		if (scrollTranslateY[currentPanel] > 1 ) {
-			// If over top, reset
-			scrollPanelTo(0);
-		}
-		if ((scrollTranslateY[currentPanel] < diffHeight*1.2) && (diffHeight < 0)) {
-			// If past bottom and panel greater than window height, reset to bottom
-			scrollPanelTo(diffHeight*1.2);
-		}
-		else if ((diffHeight > 0) && (scrollTranslateY[currentPanel] < -document.getElementById('panel-' + currentPanel).offsetHeight*.2)) {
-			// If past bottom and panel less than window height, reset to bottom
-			scrollPanelTo(-document.getElementById('panel-' + currentPanel).offsetHeight*.2);
-		}
-		// block from swiping if the gesture is a scroll gesture and not a swipe
-		if (Math.abs(deltaX) > Math.abs(deltaY)) {
-			var swipeX=80;
-			if (window.innerWidth < 600 && window.innerWidth > 200) {
-				swipeX=200;
-			}
-			if (deltaX < -swipeX) {
-				changePanel(parseInt(currentPanel+1));
-			}
-			else if (deltaX > swipeX){
-				changePanel(parseInt(currentPanel-1));
-			}
-		}
-		document.getElementById('panelFooter').style[ transformProp ] =  'translateZ( 1px )'; // to fix the panelFooter to be on top (clickable)
-	}, false);
-	
-		
 	// create on resize event to re-adjust transformations
 	window.onresize = function(evt) {
 		// translate new radius for 3D Carousel
@@ -282,6 +273,10 @@ var init = function() {
 		var win = window.open('https://github.com/amorganPD', '_blank');
 		win.focus();
 	}, false);
+	
+	
+	//timedLoop.registerFunction();
+	//timedLoop.start();
 };
 
 window.addEventListener('DOMContentLoaded', init, false);

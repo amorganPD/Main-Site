@@ -121,6 +121,9 @@ a:hover {
 	/* border: .1em solid; */
 	border-color: rgba(48, 48, 48, 1);
 }
+#panel-0 {
+	background-color: rgba(48, 48, 48, .995);
+}
 #panel-1, #panel-2, #panel-3 {
 	height: auto;
 }
@@ -165,8 +168,6 @@ a:hover {
 	background-color: #BBFF00;
 }
 .panelDot:hover {
-	border-color: #686868;
-	background-color: #282828;
 	cursor: pointer;
 }
 .navArrow {
@@ -361,6 +362,14 @@ a:hover {
 	.titleHeader {
 		font-size: .8em;
 		width: 8em;
+	}
+}
+/* assumption that screen widths larger than 40em are not touch O.o */
+@media (min-width: 40em) {
+	.panelDot:hover {
+		border-color: #686868;
+		background-color: #282828;
+		cursor: pointer;
 	}
 }
 

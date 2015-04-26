@@ -38,6 +38,7 @@ var init = function() {
 	// change function to change a panel to index
 	var changePanel = function(index) {
 		// Check bounds
+		index = parseInt(index); // cleanse it!
 		if (index >= panels.length) {
 			index=0;
 		}
@@ -58,7 +59,7 @@ var init = function() {
 	panelDotClass = document.getElementsByClassName('panelDot');
 	for (i=0; i < panelDotClass.length; i++ ) {
 		panelDotClass[i].addEventListener( 'click', function(evt){
-			changePanel(evt.currentTarget.id[evt.currentTarget.id.length-1]);
+			changePanel(parseInt(evt.currentTarget.id[evt.currentTarget.id.length-1]));
 		}, false);
 		scrollTranslateY.push(0);
 	}

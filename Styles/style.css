@@ -60,6 +60,7 @@ a:hover {
 	-moz-transform-style: preserve-3d;
 	-o-transform-style: preserve-3d;
 	transform-style: preserve-3d;
+	z-index: 10;
 }
 
 .platform {
@@ -134,7 +135,7 @@ a:hover {
 	position: absolute;
 	top: 0em;
 	background-color: rgba(12, 12, 12, .8);
-	z-index: 99;
+	z-index: 999;
 }
 .panelFooter {
 	color: #EFEFEF;
@@ -144,8 +145,9 @@ a:hover {
 	left: calc(50% - 9em);
 	position: absolute;
 	bottom: .2em;
-	z-index: 99;
-	/* background-color: rgba(12, 12, 12, .5); */
+	z-index: 999;
+	border-radius: .8em;
+	background-color: rgba(12, 12, 12, .9);
 }
 .panelDot {
 	display: inline-block;
@@ -165,6 +167,21 @@ a:hover {
 .panelDot:hover {
 	border-color: #686868;
 	background-color: #282828;
+	cursor: pointer;
+}
+.navArrow {
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+}
+.navArrow:hover {
+	cursor: pointer;
+}
+#toBottom {
+	background: url("../Images/DownArrow.svg");
+}
+#toTop {
+	background: url("../Images/UpArrow.svg");
 }
 
 .titleHeader {

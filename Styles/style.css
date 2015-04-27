@@ -96,10 +96,10 @@ a:hover {
 
 .carousel{
 	min-width: 60%;
-	height: 80%;
+	height: calc(100% - 4.5em);
 	position: absolute;
-	left: 10%;
-	right: 10%;
+	left: -1px;
+	right: -1px;
 	top: 0em;
 	-webkit-transition: -webkit-transform 1s;
 	-moz-transition: -moz-transform 1s;
@@ -117,7 +117,7 @@ a:hover {
 	height: 100%;
 	position: absolute;
 	/* background-color: #BBFF00; */
-	background-color: rgba(48, 48, 48, .95);
+	background-color: rgba(48, 48, 48, .995);
 	/* border: .1em solid; */
 	border-color: rgba(48, 48, 48, 1);
 }
@@ -141,15 +141,16 @@ a:hover {
 	z-index: 999;
 }
 .panelFooter {
+	position: absolute;
 	color: #EFEFEF;
 	text-align: center;
-	width:  18em;
+	width:  17em;
 	height: 1.6em;
-	left: calc(50% - 9em);
-	position: absolute;
+	left: calc(50% - 8.5em);
+	padding: .2em 0em .2em 0em;
 	bottom: .2em;
 	z-index: 999;
-	border-radius: .8em;
+	border-radius: 1em;
 	background-color: rgba(12, 12, 12, .9);
 }
 .panelDot {
@@ -179,9 +180,13 @@ a:hover {
 	cursor: pointer;
 }
 #toBottom {
+	position: relative;
+	top: -.12em;
 	background: url("../Images/DownArrow.svg");
 }
 #toTop {
+	position: relative;
+	top: -.12em;
 	background: url("../Images/UpArrow.svg");
 }
 
@@ -200,6 +205,8 @@ a:hover {
 	left: 1em;
 }
 .iconHeader {
+	position: relative;
+	left: 0;
 	font-family: OpenSans;
 	display: none;
 	color: #DFDFDF;
@@ -228,12 +235,15 @@ a:hover {
 	color: #DFDFDF;
 	position: relative;
 	height: 2em;
+	text-shadow: .1em .1em .05em #000000;
 }
 .iconWrapper:hover  {
 	cursor: pointer;
 }
 .iconWrapper:hover .iconHeader  {
     display: inline-block;
+/* 	position: relative;
+	left: -1.1em; */
 }
 .iconWrapper:hover .iconHome  {
 	background-color: #DEDEDE;

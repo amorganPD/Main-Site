@@ -17,10 +17,10 @@ var init = function() {
 	var zTranslate = [];
 	var xTranslate = [];
 	
-	if (window.innerWidth < 600) {
-		document.getElementsByClassName('carousel')[0].style[ 'left' ] = '0';
-		document.getElementsByClassName('carousel')[0].style[ 'right' ] = '0';
-	}
+	// if (window.innerWidth < 600) {
+		// document.getElementsByClassName('carousel')[0].style[ 'left' ] = '-1px';
+		// document.getElementsByClassName('carousel')[0].style[ 'right' ] = '-1px';
+	// }
 	
 	document.getElementsByClassName('carousel')[0].style[ transformProp ] = 'translateZ( ' + -carouselShift + 'px ) translateY( 4.5em) ';
 	for (var i=0; i< carousel.length; i++ ) {
@@ -33,7 +33,7 @@ var init = function() {
 	
 	var panels = document.getElementsByClassName('panel');
 	var currentPanel = 0;
-	var panelTitles = ["", "Web App Projects", "Embedded Projects", "Concepts et al", "Tutorials",""];
+	var panelTitles = ["Anton Morgan", "Web App Projects", "Embedded Projects", "Concepts et al", "Tutorials",""];
 	
 	// change function to change a panel to index
 	var changePanel = function(index) {
@@ -85,9 +85,6 @@ var init = function() {
 		// block from swiping if the gesture is a scroll gesture and not a swipe
 		if (Math.abs(deltaX) > Math.abs(deltaY)) {
 			var swipeX=80;
-			if (window.innerWidth < 600 && window.innerWidth > 200) {
-				swipeX=200;
-			}
 			if (deltaX < -swipeX) {
 				changePanel(parseInt(currentPanel+1));
 			}
@@ -132,13 +129,21 @@ var init = function() {
 			scrollPanelTo(0);
 		}
 	};
-	document.body.addEventListener("DOMMouseScroll", function(evt) {
+	document.body.addEventListener("wheel", function(evt) {
 		var diffHeight = (window.innerHeight*.8 - document.getElementById('panel-' + currentPanel).offsetHeight);
-		if (evt.detail < 0) {
-			scrollPanelTo(scrollTranslateY[currentPanel] + (-1*evt.detail));
+		var deltaY = evt.deltaY;
+		// guard against different modes 0: pixel, 1: lines, 2: page
+		if (evt.deltaMode == 1) {
+			deltaY*=40;
 		}
-		else if (evt.detail > 0 && (scrollTranslateY[currentPanel] > diffHeight*1.2)) {
-			scrollPanelTo(scrollTranslateY[currentPanel]-evt.detail);
+		else if (evt.deltaMode == 2) {
+			deltaY*=80;
+		}
+		if (deltaY < 0) {
+			scrollPanelTo(scrollTranslateY[currentPanel] + (-1*deltaY));
+		}
+		else if (deltaY > 0 && (scrollTranslateY[currentPanel] > diffHeight*1.2)) {
+			scrollPanelTo(scrollTranslateY[currentPanel]-deltaY);
 		}
 		if (scrollTranslateY[currentPanel] > 0) {
 			scrollPanelTo(0);
@@ -148,6 +153,7 @@ var init = function() {
 	var previousTouchY = 0;
 	var previousTouchX = 0;
 	document.body.addEventListener('touchmove', function(evt) {
+		evt.preventDefault();
 		var touch = evt.touches[0] || evt.originalEvent.touches[0] || evt.originalEvent.changedTouches[0];
 		var deltaY=(previousTouchY-touch.screenY);
 		var deltaX=(previousTouchX-touch.screenX);
@@ -274,6 +280,9 @@ var init = function() {
 		win.focus();
 	}, false);
 	
+	document.getElementsByClassName('iconWrapper')[0].addEventListener( 'click', function(evt){
+		changePanel(0);
+	}, false);
 	
 	//timedLoop.registerFunction();
 	//timedLoop.start();

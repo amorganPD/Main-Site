@@ -3,33 +3,19 @@
 	width: 100%;
 	height: inherit;
 	margin: 0em;
+	background: url("../Images/backgroundImage.svg");
+	background-color: #020202;
+	background-size: 1em 1em;	
+    background-repeat: repeat;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 .bodyWrapper{
 	width: 100%;
-	min-width: 20em;
 	height: 100vh;
 	margin: 0em;
-}
-
-.backgroundDiv {
-	position: fixed;
-	width: 100%;
-	height: inherit;
-	background: url("../Images/backgroundImage.svg");
-	background-color: #020202;
-	background-size: 2em 2em;	
-    background-repeat: repeat;
-}
-.randomBgBlock {
-	position: fixed;
-	width: 2em;
-	height: 2em;
-	left: 6em;
-	top: 20em;
-	background: url("../Images/backgroundImage.svg");
-	background-color: #003344;
-	background-size: 2em 2em;	
-    background-repeat: no-repeat;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 h1 {
@@ -46,7 +32,6 @@ a:hover {
 
 .container {
 	width: 100%;
-	min-width: 20em;
 	height: 100%;
 	position: absolute;
 	margin: 0 auto;
@@ -56,6 +41,8 @@ a:hover {
 	-moz-perspective: 100em;
 	-o-perspective: 100em;
 	perspective: 60em;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 .backgroundPlatform {
@@ -127,10 +114,10 @@ a:hover {
 .panel {
 	color: #EFEFEF;
 	width: 100%;
-	height: 36em;
+	height: 100%;
 	position: absolute;
 	/* background-color: #BBFF00; */
-	background-color: rgba(48, 48, 48, .90);
+	background-color: rgba(48, 48, 48, .995);
 	/* border: .1em solid; */
 	border-color: rgba(48, 48, 48, 1);
 }
@@ -144,14 +131,13 @@ a:hover {
 	height: 60em;
 } */
 .panelHeader {
-	position: fixed;
 	color: #EFEFEF;
 	text-align: center;
-	width: 100%;
-	min-width: 20em;
+	min-width: 100%;
 	height: 4.6em;
+	position: absolute;
 	top: 0em;
-	background-color: rgba(12, 12, 12, .9);
+	background-color: rgba(12, 12, 12, .8);
 	z-index: 999;
 }
 .panelFooter {
@@ -214,7 +200,6 @@ a:hover {
 	margin: auto;
 }
 .iconWrapper {
-	display: none;
 	position: absolute;
 	font-family: OpenSans;
 	left: 1em;
@@ -304,45 +289,6 @@ a:hover {
 	background-image: url("../Images/github-icon.svg");
 }
 
-.aboutMe {
-	vertical-align: top;
-	display: inline-block;
-	width: calc(50% - .2em);
-	height: 36em;
-	padding: 4.6em 0em .5em 0em;
-}
-.no-width {
-	/* width: inherit; */
-}
-.iconMe {
-	display: inline-block;
-	background-color: #BBFF00;
-	background-image: url("../Images/MyFace.svg");
-	background-size: auto 100%;
-	padding: 0em;
-	margin: 0em 1em 0em 0em;
-	width: 14em;
-	height: 14em;
-	border-radius: .8em;
-	box-shadow:  .16em .16em .2em #020202;
-	vertical-align: middle;
-}
-.aboutMeText {
-	display: inline-block;
-	vertical-align: middle;
-	font-size: 1.2em;
-}
-.strongField {
-	color: #7F7F7F;
-}
-.aboutMeWrapper {
-	display: inline-block;
-	vertical-align: middle;
-	height: 36em;
-	padding: 8.6em 0em 0em 8%;
-	width: 100%;
-}
-
 .bullcrapAlign {
 	display: inline-block;
 	width: .1em;
@@ -356,17 +302,12 @@ a:hover {
 	vertical-align: middle;
 }
 .content-3 {
-	height: calc(33.3% - 1.53333em);
+	height: 33.3%;
 	width: 100%;
 	margin: 0em;
-	margin-right: 6em;
 	padding: .5em 1em .5em 1em;
 	vertical-align: middle;
 	box-sizing: border-box;
-    white-space: normal;
-}
-#aboutMeAlign {
-	height: calc(36em - 4.6em);
 }
 
 #designContent {
@@ -383,8 +324,6 @@ a:hover {
 .tagLine {
 	display: inline-block;
 	padding: .2em .4em .2em .4em;
-	max-width: 20em;
-	width: 60%;
 }
 
 .projectTitle {
@@ -419,25 +358,8 @@ a:hover {
 	.projectContent {
 		margin: 0em 5em 0em 5em;
 	}
-/* 	.iconMe {
-		width: 10em;
-		height: 10em;
-		margin: .5em 0em .5em 1em;
-		vertical-align: top;
-	}
-	.aboutMeText {
-		vertical-align: top;
-		font-size: 1em;
-		margin: .5em 1em .5em 1em;
-	} */
 }
-@media (max-width: 64em) {
-	.aboutMeWrapper {
-		padding: 6.6em 0em 0em 8%;
-	}
-}
-
-@media (max-width: 44em) {
+@media (max-width: 40em) {
 	.iconHeader {
 		display: none !important;
 	}
@@ -455,27 +377,8 @@ a:hover {
 		background-color: #DEDEDE;
 		margin-top: .8em;
 	}
-	.iconMe {
-		width: 10em;
-		height: 10em;
-		margin: .5em 0em .5em 1em;
-		/* margin-left: calc(50% - 5em); */
-		vertical-align: top;
-	}
-	.aboutMeText {
-		vertical-align: top;
-		font-size: 1em;
-		margin: .5em 1em .5em 1em;
-	}
-	.aboutMeWrapper {
-		padding: 6.6em 0em 0em 8%;
-	}
-	#aboutMeAlign {
-		display: none;
-	}
 	.content-3 {
 		padding: .2em;
-		font-size: .8em;
 	}
 	.contentIcon {
 		height: 30%;
@@ -493,7 +396,7 @@ a:hover {
 	}
 }
 /* assumption that screen widths larger than 40em are not touch O.o */
-@media (min-width: 44em) {
+@media (min-width: 40em) {
 	.panelDot:hover {
 		border-color: #686868;
 		background-color: #282828;
@@ -501,21 +404,6 @@ a:hover {
 	}
 }
 @media (max-width: 28em) {
-	.contentIcon {
-		height: 20%;
-	}
-	.iconMe {
-		width: 6em;
-		height: 6em;
-		margin: .5em 0em .5em .1em;
-		/* margin-left: calc(50% - 5em); */
-		vertical-align: top;
-	}
-	.aboutMeText {
-		vertical-align: top;
-		font-size: 1em;
-		margin: .5em .1em .5em .1em;
-	}
 	.iconWrapper {
 		left: .4em;
 	}

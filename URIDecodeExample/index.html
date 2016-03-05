@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+	
+    <title>URI Decode Example</title>
+    <link href="Styles/style.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="container">
+	<div id="textField"></div>
+</div>
+<div class="theFiddle">Check out the fiddle to make sense of the page:<br />
+    <a href="https://jsfiddle.net/v62zdna7/2/" target="_blank">https://jsfiddle.net/v62zdna7/2/</a>
+<div>
+<body>
+	<!--Script references. -->
+    <script src="jquery-1.11.2.min.js"></script>
+	<script>
+		var init = function() {
+			if (location.search == "" || location.search == undefined) {
+				testObject = {NothingToSeeHere: "Somethings Not Right"};
+			}
+			else {
+				testURI = location.search.substr(1);
+				var test = decodeURIComponent(testURI);
+				testObject = jQuery.parseJSON(test);
+			}
+			
+			$("#textField").html("Your Decoded Object (Hopefully)<br />" + JSON.stringify(testObject));
+			
+		}
+
+		window.addEventListener('DOMContentLoaded', init, false);
+	</script>
+    <script type="text/javascript" src="../Scripts/ga.js"></script>
+</body>
+	
+</html>

@@ -400,6 +400,19 @@ a:hover {
 	height: auto;
 	margin: 0em 20em 0em 20em;
 }
+.projectSubImage {
+    width: calc(50% - 4.2em);
+    display: inline-block;
+    height: auto;
+    padding: 2em 2em 0em 2em;
+}
+.projectImageSmall {
+    position: relative;
+    width: calc(100% - 40em);
+	height: auto;
+	margin: 1em 20em 1em 20em;
+    vertical-align: middle;
+}
 .projectContent {
 	width: auto;
 	padding: 1em;
@@ -416,6 +429,10 @@ a:hover {
 		width: calc(100% - 10em);
 		margin: 0em 5em 0em 5em;
 	}
+    .projectImageSmall {
+        width: calc(100% - 10em);
+	   margin: 1em 5em 1em 5em;
+    }
 	.projectContent {
 		margin: 0em 5em 0em 5em;
 	}
@@ -488,6 +505,14 @@ a:hover {
 		width: 100%;
 		margin: 0em 0em 0em 0em;
 	}
+    .projectImageSmall {
+		width: 100%;
+	   margin: 0em;
+    }
+    .projectSubImage {
+        width: 100%;
+        padding: 0em;
+    }
 	.projectContent {
 		margin: 0em 0em 0em 0em;
 	}

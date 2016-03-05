@@ -1,0 +1,31 @@
+﻿body {
+	font-family: Arial;
+	width: 100%;
+	height: inherit;
+	margin: 0em;
+	background-color: #020202;
+	color: #AFAFAF;
+}
+
+.container {
+	position: absolute;
+	width: 100%;
+	height: 50%;
+	top: 25%;
+	text-align: center;
+	font-size: 3em;
+}
+
+.theFiddle {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 0em;
+    font-size: 2em;
+}
+.theFiddle a {
+    color: #4488FF;
+}
+.theFiddle a:hover {
+    color: #2244AA;
+}

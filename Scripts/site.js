@@ -3,13 +3,19 @@ var init = function() {
 
 	function getAge(birthday) {
 		var now = new Date();
-		var years = now.getFullYear() - birthday.getFullYear();
-		var hasBirthdayPassed = !((now.getMonth() >= birthday.getMonth()) && (now.getDate() >= birthday.getDate()));
-		var Age = years - 1*hasBirthdayPassed;
+		var Age = now.getFullYear() - birthday.getFullYear();
+		var monthPassed = (now.getMonth() >= birthday.getMonth());
+		var dayPassed = (now.getDate() >= birthday.getDate())
+		if (!monthPassed) {
+			if (!dayPassed) {
+				Age--;
+			}
+		}
 		$("#Age").html("<strong class=\"strongField\">Age</strong> " + Age);
 	}
 	var myBirthday = new Date(1987, 2, 6);
 	getAge(myBirthday);
+	
 	document.getElementsByClassName('iconWrapper')[0].addEventListener( 'click', function(evt){
 		var win = window.open('#Home',"_self");
 	}, false);
@@ -18,15 +24,15 @@ var init = function() {
 		if (scrollVert > 240) {
 			var fadeSpeed = 300;
 			$(".iconMe").fadeOut(fadeSpeed, function() {
-				<!-- $(".aboutMeText").css("margin-left", "6em"); -->
+				//$(".aboutMeText").css("margin-left", "6em");
 				$(".iconWrapper").fadeIn(fadeSpeed);
 			});
 			$(".aboutMeText").fadeOut(fadeSpeed);
-			<!-- $(".iconWrapper").css("display", "inline"); -->
+			//$(".iconWrapper").css("display", "inline");
 		}
 		else {
 			$(".iconWrapper").fadeOut(200, function() {
-				<!-- $(".aboutMeText").css("margin-left", "0em"); -->
+				//$(".aboutMeText").css("margin-left", "0em");
 				$(".iconMe").fadeIn(200);
 				$(".aboutMeText").fadeIn(200);
 			});
@@ -60,10 +66,10 @@ var init = function() {
 	getRandomBackground();
 	
 	// Change the random background blocks every 5 secs
-	<!-- setInterval(function() { getRandomBackground();	},5000); -->
-	<!-- timedLoop.registerFunction(getRandomBackground); -->
-	<!-- timedLoop.setLoopTime(5000); -->
-	<!-- timedLoop.start(); -->
+	// setInterval(function() { getRandomBackground();	},5000);
+	// timedLoop.registerFunction(getRandomBackground);
+	// timedLoop.setLoopTime(5000);
+	// timedLoop.start();
 	
 	
 	window.onresize = function(evt) {

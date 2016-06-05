@@ -7,6 +7,7 @@
 	
     <title>Anton Morgan | Engineer :: Designer</title>
     <link href="Styles/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/ga.js"></script>
 </head>
 <body>
 <div class="bodyWrapper" id="Home">
@@ -32,7 +33,7 @@
 		<div class="backgroundPlatform">
 			<div class="panel">
 				<!-- About Me -->
-				<div class="aboutMe no-width">
+				<div class="aboutMe no-width" id="aboutMe-Info">
 					<!-- <div class="bullcrapAlign" id="aboutMeAlign"></div> -->
 					<div class="aboutMeWrapper">
 						<div class="iconMe"></div>
@@ -45,7 +46,13 @@
 					</div>
 				</div>
 				<div class="aboutMe">
-					<div class="content-3" id="designContent"><div class="bullcrapAlign"></div><img class="contentIcon" src="./Images/design-icon.svg" /><div class="tagLine">A commitment to design...</div></div>
+					<div class="content-3" id="designContent">
+                        <div class='darkOverlay'>
+                            <div class="bullcrapAlign"></div>
+                            <img class="contentIcon" src="./Images/design-icon.svg" />
+                            <div class="tagLine">A commitment to design...</div>
+                        </div>
+                    </div>
 					<div class="content-3" id="mechContent"><div class="tagLine">A desire to tinker...</div><img class="contentIcon" src="./Images/mechanical-icon.svg" /><div class="bullcrapAlign"></div></div>
 					<div class="content-3" id="codeContent"><div class="bullcrapAlign"></div><img class="contentIcon" src="./Images/code-icon.svg" /><div class="tagLine">And a passion to code. </div></div>
 				</div>
@@ -113,7 +120,6 @@
     </div>
 </div>
 	<!--Script references. -->
-    <script type="text/javascript" src="Scripts/ga.js"></script>
     <script type="text/javascript" src="Scripts/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="Scripts/utils.js"></script>
 	<script type="text/javascript" src="Scripts/timedLoop.js"></script>

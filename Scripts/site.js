@@ -6,14 +6,17 @@ var init = function() {
 		var Age = now.getFullYear() - birthday.getFullYear();
 		var monthPassed = (now.getMonth() >= birthday.getMonth());
 		var dayPassed = (now.getDate() >= birthday.getDate())
-		if (!monthPassed) {
+		if (monthPassed) {
 			if (!dayPassed) {
 				Age--;
 			}
 		}
+		else {
+			Age--;
+		}
 		$("#Age").html("<strong class=\"strongField\">Age</strong> " + Age);
 	}
-	var myBirthday = new Date(1987, 2, 6);
+	var myBirthday = new Date(1987, 3 - 1, 6);
 	getAge(myBirthday);
 	
 	document.getElementsByClassName('iconWrapper')[0].addEventListener( 'click', function(evt){
